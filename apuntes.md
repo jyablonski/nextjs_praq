@@ -22,6 +22,15 @@ The App has the following structure:
 
 To run the App, run `pnpm dev`.
 
+Fonts play a significant role in the design of a website, but using custom fonts in your project can affect performance if the font files need to be fetched and loaded.
+
+- Next.js automatically optimizes fonts in the application when you use the next/font module. It downloads them at build time and stores them with other asset files to host them instead of users having to download them when visting your application.
+
+Next.js also manages images from the `public/` folder that can be referenced in your app. 
+
+- `next/image` component can be used to automatically optimize your images to make sure they work on different devices + screen sizes.
+
+
 ## Node.js background
 
 Node.js is a runtime environment that allows you to run JavaScript on the server side, outside of a web browser. Traditionally, JavaScript was used only in browsers to build interactive websites, but with Node.js, developers can use JavaScript to write server-side applications, APIs, and even command-line tools.
