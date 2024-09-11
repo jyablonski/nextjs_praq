@@ -1,4 +1,26 @@
-# NextJS
+# Next.js
+
+Next.js is an open source JavaScript framework built on top of react to build web apps. Some of the most important features include:
+
+- Enables Server Side Rendering to improve performance and SEO
+- Allows you to generate static HTML at build time to improve page loads
+- Ability to mix Server Side Rendering and Static Site Generation together
+- File based routing to automatically create routes for you based on the folder and file structure within the `pages/` directory.
+  - This is different from a traditional React SPA, where the browser loads all your application code on initial load.
+  - Splitting code by routes means that pages become isolated. If a certain page throws an error, the rest of the application will still work.
+- First class support for TypeScript
+
+
+`clsx` is a library that lets you toggle class names based on some state. If an invoice status is `pending` or `paid`, then change the color accordingly.
+
+`.ts` Files are Typescript files. This is the language used for modern web apps. It's statically typed Javascript.
+
+`.tsx` Files are extended Typescript Files to enable React Components for Next.js. These files contain JSX which allows you to write HTML into React.
+
+Next.js also manages images from the `public/` folder that can be referenced in your app. 
+
+- `next/image` component can be used to automatically optimize your images to make sure they work on different devices + screen sizes.
+
 
 ## The App
 
@@ -14,12 +36,6 @@ The App has the following structure:
   - More examples are in `/app/page.tsx`
   - If you prefer writing traditional CSS rules or keeping your styles separate from your JSX - CSS Modules are a great alternative.
 
-`clsx` is a library that lets you toggle class names based on some state. If an invoice status is `pending` or `paid`, then change the color accordingly.
-
-`.ts` Files are Typescript files. This is the language used for modern web apps. It's statically typed Javascript.
-
-`.tsx` Files are extended Typescript Files to enable React Components for Next.js. These files contain JSX which allows you to write HTML into React.
-
 To run the App, run `pnpm dev`.
 
 Fonts play a significant role in the design of a website, but using custom fonts in your project can affect performance if the font files need to be fetched and loaded.
@@ -30,6 +46,13 @@ Next.js also manages images from the `public/` folder that can be referenced in 
 
 - `next/image` component can be used to automatically optimize your images to make sure they work on different devices + screen sizes.
 
+
+The layout file is the best way to create a shared layout that all pages in your application can use.
+
+Optimizing Navigation is important because you don't want to do full page refreshes everytime you navigate around a website if you can avoid it.
+
+- Next.js uses the `<Link />` Component to link between pages in your application. It allows you to do client side navigation with JavaScript
+- Whenever <Link> components appear in the browser's viewport, Next.js automatically prefetches the code for the linked route in the background. By the time the user clicks the link, the code for the destination page will already be loaded in the background, and this is what makes the page transition near-instant!
 
 ## Node.js background
 
