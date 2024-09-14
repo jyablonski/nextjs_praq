@@ -21,6 +21,13 @@ Next.js also manages images from the `public/` folder that can be referenced in 
 
 - `next/image` component can be used to automatically optimize your images to make sure they work on different devices + screen sizes.
 
+You can create APIs in Next.js via route handlers. These APIs often interact with a Database to store & retrieve data, and use an ORM to manage connecting to the database and making the various queries needed to serve requests.
+
+- If you are using React Server Components (fetching data on the server), you can skip the API layer, and query your database directly without risking exposing your database secrets to the client.
+- By default, Next.js applications use React Server Components. Fetching data with Server Components is a relatively new approach and there are a few benefits of using them:
+- Server Components support promises, providing a simpler solution for asynchronous tasks like data fetching. You can use async/await syntax without reaching out for useEffect, useState or data fetching libraries.
+- Server Components execute on the server, so expensive data fetches and logic can happen there and results can just be sent to the client
+- Because they execute on the server, you can query database directly without an additional API layer
 
 ## The App
 
@@ -83,4 +90,11 @@ npx create-next-app@latest nextjs-dashboard --example "https://github.com/vercel
 
 pnpm i
 pnpm dev
+
+# this will install the vercel postgres sdk
+pnpm i @vercel/postgres
 ```
+
+## Vercel
+
+Vercel is a company that maintains the Next.js framework and they also offer a cloud platform where you can host your Next.js Apps on Cloud Infra. It integrates seamlessly w/ GitHub and can automatically sync after code changes to `main`.
