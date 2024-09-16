@@ -29,6 +29,51 @@ You can create APIs in Next.js via route handlers. These APIs often interact wit
 - Server Components execute on the server, so expensive data fetches and logic can happen there and results can just be sent to the client
 - Because they execute on the server, you can query database directly without an additional API layer
 
+Whenever a user visits your application, the cached result is served. There are a couple of benefits of static rendering:
+
+- Faster Websites - Prerendered content can be cached and globally distributed. This ensures that users around the world can access your website's content more quickly and reliably.
+- Reduced Server Load - Because the content is cached, your server does not have to dynamically generate content for each user request.
+- SEO - Prerendered content is easier for search engine crawlers to index, as the content is already available when the page loads. This can lead to improved search engine rankings.
+
+Static rendering is useful for UI with no data or data that is shared across users, such as a static blog post or a product page. It might not be a good fit for a dashboard that has personalized data which is regularly updated.
+
+With dynamic rendering, content is rendered on the server for each user at request time (when the user visits the page). There are a couple of benefits of dynamic rendering:
+
+- Real-Time Data - Dynamic rendering allows your application to display real-time or frequently updated data. This is ideal for applications where data changes often.
+- User-Specific Content - It's easier to serve personalized content, such as dashboards or user profiles, and update the data based on user interaction.
+- Request Time Information - Dynamic rendering allows you to access information that can only be known at request time, such as cookies or the URL search parameters.
+
+Streaming is a data transfer technique that allows you to break down a route into smaller "chunks" and progressively stream them from the server to the client as they become ready.
+
+- By streaming, you can prevent slow data requests from blocking your whole page. This allows the user to see and interact with parts of the page without waiting for all the data to load before any UI can be shown to the user.
+- Streaming works well with React's component model, as each component can be considered a chunk.
+
+Streaming can be implemented either via:
+
+- At the page level, with `loading.tsx` file
+- For specific components, you can use `<Suspense>`
+- `loading.tsx` is a special Next.js file built on top of Suspense, it allows you to create fallback UI to show as a replacement while page content loads.\
+- Since <SideNav> is static, it's shown immediately. The user can interact with <SideNav> while the dynamic content is loading.
+- The user doesn't have to wait for the page to finish loading before navigating away (this is called interruptable navigation).
+- Since loading.tsx is a level higher than /invoices/page.tsx and /customers/page.tsx in the file system, it's also applied to those pages.
+
+You can implement "Loading Skeletons" which are basically empty versions of your UI that will be populated once the streaming components are completed for the page load
+
+- ![image](https://github.com/user-attachments/assets/879c686c-9440-4301-9fcc-0876be9c1c39)
+
+If you see `(overview)` Folder names that are in parantheses, these are related to Route Groups.
+
+- Route Groups allow you to organize files into logical groups without affecting the URL path structure.
+- `/dashboard/(overview)/page.tsx` becomes `/dashboard`
+- In this app, this is done to only apply the `loading.tsx` file to the dashboard overview page
+- In larger apps, you can also use route groups to separate your application into sections (e.g. (marketing) routes and (shop) routes) or by teams
+
+![image](https://github.com/user-attachments/assets/7ff8b2d5-d6f7-49e0-ad9b-a20847e37001)
+
+- Now a few of the cards can be instantly loaded, while others still retrieve their data
+- Typically good practice to move data fetches down to the components that need it
+
+
 ## The App
 
 The App has the following structure:
